@@ -11,7 +11,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installation des dependances Python'
-                bat 'python -m pip install -r requirements.txt'
+                bat 'python -m pip install -r requirements-dev.txt'
             }
         }
 
