@@ -1,19 +1,25 @@
+
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
+
     stages {
-        stage('Hello') {
+
+        stage('Install Dependencies') {
             steps {
-                echo 'Hello depuis un pipeline déclaratif'
+                echo 'Installation des dependances Python'
+                bat 'python -m pip install -r requirements.txt'
             }
         }
-        stage('Infos environnement') {
+
+        stage('Run Tests') {
             steps {
-                echo "Nom du noeud Jenkins: ${env.NODE_NAME}"
-                echo "Workspace: ${env.WORKSPACE}"
+                echo 'Execution des tests Python'
+                bat 'python -m pytest tests/ -v'
             }
         }
     }
 }
-
-
