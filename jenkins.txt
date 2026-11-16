@@ -1,24 +1,19 @@
-
 pipeline {
     agent any
-
-    triggers {
-        pollSCM('H/2 * * * *')
-    }
 
     stages {
 
         stage('Install Dependencies') {
             steps {
                 echo 'Installation des dependances Python'
-                bat 'python -m pip install -r requirements-dev.txt'
+                bat '"C:\\Users\\LENOVO\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m pip install -r requirements-dev.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo 'Execution des tests Python'
-                bat 'python -m pytest tests/ -v'
+                bat '"C:\\Users\\LENOVO\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m pytest -v'
             }
         }
     }
